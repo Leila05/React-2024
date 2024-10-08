@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    
+}
+
+/*Abarca todo el contenido*/
+#root{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+.cont-general{
+    border-style: groove;
+    border-color: silver;
+}
+/*Titulo Notas*/
+.titulo{
+    margin: 20px;
+    text-align: center;
+}
+/*Abarcar el input, prioridad y boton agregar*/
+.contenedor2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.entrada{
+    margin: 10px;
+}
+/*Boton de agregar notas*/
+#btn-agregar{
+    background-color: blue;
+    color: white;
+    height: 30px;
+    width: 180px;
+    border-radius: 5px;
+    border-color: blue;
+}
+
+/*Estiliza la opción desplegable para filtrar prioridad*/
+.cont-filtro{
+    text-align: center;
+    margin: 20px 10px 10px 5px;
+    width: 18em;
+}
+
+/*Ancho y alto de los menús select*/
+.entrada>select, .cont-filtro>select{
+    height: 30px;
+    width: 100px;
+}
+
+/*Ancho y alto del input*/
+.entrada>input{
+    height: 25px;
+    width: 180px;
+}
+
+/*Estilos de la lista de notas que ingresa el usuario*/
+.lista-nota{
+    margin: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.lista-nota>li{
+    display: flex;
+    align-items: center;
+}
+
+/*Boton para eliminar las notas*/
+#btn-listar{
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: red;
+    margin: 10px 10px 10px 70px;
+}
