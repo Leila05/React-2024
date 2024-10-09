@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from 'pexels';
+import axios from 'axios';
 import './style.css';
 
 function App() {
@@ -9,17 +9,31 @@ function App() {
   const [imagen, setImagen] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    //Clave para tener acceso a la API de Pexels
-    const cliente = createClient('0IhLcOjA9U3TdhellwLBdSq95BNCZY5wi6GfV80QAL0202yRoGeqjEZK');
-    cliente.photos.curated({ per_page: 15 })
-    .then((res) =>{
-      setPaginacion(res.photos);
-      const imgAlea = res.photos[Math.floor(Math.random() * res.photos.length)];
+  const obtenerImagenes = async () => {
+    try {
+      //Clave para tener acceso a la API de Pexels
+      const API_KEY = '0IhLcOjA9U3TdhellwLBdSq95BNCZY5wi6GfV80QAL0202yRoGeqjEZK';
+      const respuesta = await axios.get('https://api.pexels.com/v1/curated', {
+        headers: {
+          Authorization: API_KEY
+        },
+        params: {
+          per_page: 15
+        }
+      });
+      setPaginacion(respuesta.data.photos);
+      const imgAlea = respuesta.data.photos[Math.floor(Math.random() * respuesta.data.photos.length)];
       setImagen(imgAlea);
-    }).catch((error) => setError('Error al obtener la imagen. Inténtalo de nuevo.', error))
-      .finally(() => setCargando(false));
-  },[]);
+    } catch (error) {
+      setError('Error al obtener la imagen. Inténtalo de nuevo.');
+    } finally {
+      setCargando(false);
+    }
+  };
+
+  useEffect(() =>{
+    obtenerImagenes();
+  }, []);
 
   const cambiarImagen = () => {
     if (paginacion) {
